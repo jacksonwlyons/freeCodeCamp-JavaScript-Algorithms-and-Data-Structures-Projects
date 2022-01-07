@@ -1,0 +1,124 @@
+function convertToRoman(num) {
+ // convert number to string to allow for indexing.
+ let str_num = String(num);
+ // initialize empty array for all the roman numerals
+ // to be added incrementally.
+ const new_num  = [];
+
+ for (let i =0; i < str_num.length; i++) {
+   if (i == (str_num.length)-1) {
+     console.log(str_num[i]);
+     console.log(str_num);
+     switch(str_num[i]) {
+       case "1":
+        new_num.push("I");
+        break;
+       case "2":
+        new_num.push("II");
+        break;
+       case "3":
+        new_num.push("III");
+        break;
+       case "4":
+        new_num.push("IV");
+        break;
+       case "5":
+        new_num.push("V");
+        break;
+       case "6":
+        new_num.push("VI");
+        break;
+       case "7":
+        new_num.push("VII");
+        break;
+       case "8":
+        new_num.push("VIII");
+        break;
+       case "9":
+        new_num.push("IX");
+        break;
+     }
+ 
+   }
+   else if (i == (str_num.length)-2) {
+     switch(str_num[i]) {
+       case "1":
+        new_num.push("X");
+        break;
+       case "2":
+        new_num.push("XX");
+        break;
+       case "3":
+        new_num.push("XXX");
+        break;
+       case "4":
+        new_num.push("XL");
+        break;
+       case "5":
+        new_num.push("L");
+        break;
+       case "6":
+        new_num.push("LX");
+        break;
+       case "7":
+        new_num.push("LXX");
+        break;
+       case "8":
+        new_num.push("LXXX");
+        break;
+       case "9":
+        new_num.push("XC");
+        break;
+     }
+   }
+   else if (i == (str_num.length)-3) {
+     switch(str_num[i]) {
+       case "1":
+        new_num.push("C");
+        break;
+       case "2":
+        new_num.push("CC");
+        break;
+       case "3":
+        new_num.push("CCC");
+        break;
+       case "4":
+        new_num.push("CD");
+        break;
+       case "5":
+        new_num.push("D");
+        break;
+       case "6":
+        new_num.push("DC");
+        break;
+       case "7":
+        new_num.push("DCC");
+        break;
+       case "8":
+        new_num.push("DCCC");
+        break;
+       case "9":
+        new_num.push("CM");
+        break; 
+     }
+   }
+   // *Note this program only works for numbers up to 3999*
+   else if (i == (str_num.length)-4) {
+     switch(str_num[i]) {
+       case "1":
+        new_num.push("M");
+        break;
+       case "2":
+        new_num.push("MM");
+        break;
+       case "3":
+        new_num.push("MMM");
+        break;
+     }
+   }
+   
+ }
+ // combine all the individual roman numerals from the array
+ let result = new_num.join(''); 
+ return result;
+}
