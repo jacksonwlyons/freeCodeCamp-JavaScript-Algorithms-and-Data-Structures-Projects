@@ -1,0 +1,22 @@
+function rot13(str) {
+  var decoded_str = "";
+  for (let r = 0; r<str.length; r++) {
+    // check if the character is a letter
+    if (str[r].toLowerCase() != str[r].toUpperCase()) {
+      // convert character to ascii and shift it 13 places 
+      // depending on where it is in alphabet.
+      if (str[r].charCodeAt() < 78) {
+        let encoded_str1 = str[r].charCodeAt() +13;
+        decoded_str += String.fromCharCode(encoded_str1);
+      }
+      else {
+        let encoded_str = str[r].charCodeAt() - 13;
+        decoded_str += String.fromCharCode(encoded_str);
+      }
+    }
+    else {
+      decoded_str += str[r];
+    }
+  }
+  return decoded_str;
+}
