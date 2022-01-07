@@ -1,5 +1,5 @@
 # freeCodeCamp-JavaScript-Algorithms-and-Data-Structures-Projects
 
-https://www.freecodecamp.org/snoylj
+I have updated/simplified my code for the projects. My original solution is available on the freeCodeCamp website.
 
-Link to my freeCodeCamp profile ^
+Link to my freeCodeCamp profile -> https://www.freecodecamp.org/snoylj
