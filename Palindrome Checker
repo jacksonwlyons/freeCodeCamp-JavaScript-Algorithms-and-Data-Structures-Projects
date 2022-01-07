@@ -1,5 +1,7 @@
 function palindrome(str) {
-  // remove all non-alphanumeric characters
+  // This source helped me determine how to remove 
+  // all non-alphanumeric characters.
+  // https://melvingeorge.me/blog/remove-all-non-alphanumeric-characters-string-javascript
   const r = /[^A-Za-z0-9]/g;
 
   let new_str = str.replace(r, '');
