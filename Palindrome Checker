@@ -1,0 +1,19 @@
+function palindrome(str) {
+  // remove all non-alphanumeric characters
+  const r = /[^A-Za-z0-9]/g;
+
+  let new_str = str.replace(r, '');
+    
+  // convert string to lowercase
+  new_str = new_str.toLowerCase();
+
+  // compare letters with the corresponding letter
+  // on the opposite end.
+  for (let j = 0; j < new_str.length; j++) {
+    new_str[j].toLowerCase();
+    if (new_str[j] != new_str[new_str.length - (j+1)]) {
+      return false;
+    }
+  }
+  return true;
+}
