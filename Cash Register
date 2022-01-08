@@ -1,0 +1,159 @@
+function checkCashRegister(price, cash, cid) {
+  let count_100 = 0;
+  let count_20 = 0;
+  let count_10 = 0;
+  let count_5 = 0;
+  let count_1 = 0;
+  let count_quarter = 0;
+  let count_dime = 0;
+  let count_nickel = 0;
+  let count_penny = 0;
+ 
+  let obj = {status: "", change: []};
+  let change_due = cash - price;
+  let total_cid = 0;
+  // determine total cash-in-drawer
+  for (let r =0; r < cid.length; r++) {
+    total_cid += cid[r][1];
+  }
+  // if total cash-in-drawer is less than change due
+  if (total_cid < change_due) {
+    obj.status = "INSUFFICIENT_FUNDS";
+  }
+  // if total cash-in-drawer is equal to the change due
+  else if(total_cid == change_due) {
+    obj.status = "CLOSED";
+    obj.change = cid;
+  }
+  
+  else {
+    obj.status = "OPEN";
+    while (change_due != 0) {
+      change_due = Math.round(change_due * 100) / 100;
+      // check 100's
+      if (change_due > 100 && count_100 != 1 && cid[8][1] != 0) {
+        if (cid[8][1] < change_due) {
+          obj.change.push(cid[8]);
+          change_due -= cid[8][1];
+          count_100++;
+        }
+        else {
+          cid[8][1] = change_due - (change_due % 100);
+          obj.change.push(cid[8]);
+          change_due -= cid[8][1];
+        }
+      }
+      // check 20's
+      else if (change_due > 20 && count_20 != 1 && cid[7][1] != 0) {
+        if (cid[7][1] < change_due) {
+          obj.change.push(cid[7]);
+          change_due -= cid[7][1];
+          count_20++;    
+        }
+        else {
+          cid[7][1] = change_due - (change_due % 20);
+          obj.change.push(cid[7]);
+          change_due -= cid[7][1];
+        }
+      }
+      // check 10's
+      else if (change_due > 10 && count_10 != 1 && cid[6][1] != 0) {
+        if (cid[6][1] < change_due) {
+          obj.change.push(cid[6]);
+          change_due -= cid[6][1];
+          count_10++;
+        }
+        else {
+          cid[6][1] = change_due - (change_due % 10);
+          obj.change.push(cid[6]);
+          change_due -= cid[6][1];
+        }
+      }
+
+      //check 5's
+      else if (change_due > 5 && count_5 != 1 && cid[5][1] != 0) {
+        if (cid[5][1] < change_due) {
+          obj.change.push(cid[5]);
+          change_due -= cid[5][1];
+          count_5++;
+        }
+        else {
+          cid[5][1] = change_due - (change_due % 5);
+          obj.change.push(cid[5]);
+          change_due -= cid[5][1];
+        }
+      }
+      // check 1's
+      else if (change_due > 1 && count_1 != 1 && cid[4][1] != 0) {
+        if (cid[4][1] < change_due) {
+          obj.change.push(cid[4]);
+          change_due -= cid[4][1];
+          count_1++;
+        }
+        else {
+          cid[4][1] = change_due - (change_due % 1);
+          obj.change.push(cid[4]);
+          change_due -= cid[4][1];
+        }
+      }
+      // check quarters
+      else if (change_due > .25 && count_quarter != 1 && cid[3][1] != 0) {
+        if (cid[3][1] < change_due) {
+          obj.change.push(cid[3]);
+          change_due -= cid[3][1];
+          count_quarter++;
+        }
+        else {
+          cid[3][1] = change_due - (change_due % .25);
+          obj.change.push(cid[3]);
+          change_due -= cid[3][1];
+        }
+      }
+      // check dimes
+      else if (change_due > .10 && count_dime != 1 && cid[2][1] != 0) {
+        if (cid[2][1] < change_due) {
+          obj.change.push(cid[2]);
+          change_due -= cid[2][1];
+          count_dime++;
+        }
+        else {
+          cid[2][1] = change_due - (change_due % .10);
+          obj.change.push(cid[2]);
+          change_due -= cid[2][1];
+        }
+      }
+      // check nickels
+      else if (change_due > .05 && count_nickel != 1 && cid[1][1] != 0) {
+        if (cid[1][1] < change_due) {
+          obj.change.push(cid[1]);
+          change_due -= cid[1][1];
+          count_nickel++;
+        }
+        else {
+          cid[1][1] = change_due - (change_due % .05);
+          obj.change.push(cid[1]);
+          change_due -= cid[1][1];
+        }
+      }
+      // check pennies
+      else if (change_due > .01 && count_penny != 1 && cid[0][1] != 0) {
+        if (cid[0][1] < change_due) {
+          obj.change.push(cid[0]);
+          change_due -= cid[0][1];
+          count_penny++;
+        }
+        else {
+          cid[0][1] = change_due - (change_due % .01);
+          obj.change.push(cid[0]);
+          change_due -= cid[0][1];
+        }
+      }
+      else {
+        obj.status = "INSUFFICIENT_FUNDS";
+        obj.change = [];
+        change_due = 0;
+      }
+    }
+  }
+  return obj;
+}
